@@ -1,0 +1,136 @@
+[
+  {
+    "id": 1,
+    "type": "multiple_choice",
+    "question": "Hur gammal var Eva när hon var med i sin första danstävling?",
+    "image": null,
+    "options": ["TODO - Alternativ A", "TODO - Alternativ B", "TODO - Alternativ C"],
+    "correct": 0,
+    "points": 10
+  },
+  {
+    "id": 2,
+    "type": "multiple_choice",
+    "question": "Idag jobbar Eva som mattelärare och är extremt uppskattad för sin kunskap och humor bland sina elever. Men vilket ämne tyckte Eva bäst om i skolan?",
+    "image": null,
+    "options": ["Idrott", "Svenska", "Matte"],
+    "correct": 0,
+    "points": 10
+  },
+  {
+    "id": 3,
+    "type": "multiple_choice",
+    "question": "Vem var hennes första kändiskrush (kanske kvar än idag)?",
+    "image": null,
+    "options": ["George Clooney", "Leonardo DiCaprio", "Lasse Åberg", "Stig Helmer", "Brad Pitt"],
+    "correct": 0,
+    "points": 10
+  },
+  {
+    "id": 4,
+    "type": "multiple_choice",
+    "question": "Vilket av dessa länder har mamma INTE varit i?",
+    "image": null,
+    "options": ["USA", "Madagaskar", "Storbritannien", "Tyskland", "Spanien", "Italien", "Grekland", "Mexiko"],
+    "correct": 1,
+    "points": 10
+  },
+  {
+    "id": 5,
+    "type": "multiple_choice",
+    "question": "Vilket land reste hon till först utan sina föräldrar, hur gammal var hon?",
+    "image": null,
+    "options": ["TODO - Alternativ A", "TODO - Alternativ B", "TODO - Alternativ C"],
+    "correct": 0,
+    "points": 10
+  },
+  {
+    "id": 6,
+    "type": "multiple_choice",
+    "question": "Vad är mammas favoritgodis, denna kanske ni kan lista ut?",
+    "image": null,
+    "options": ["Saltlakrits", "Vinegummi", "Gelehallon", "Sötlakrits"],
+    "correct": 1,
+    "points": 10
+  },
+  {
+    "id": 7,
+    "type": "multiple_choice",
+    "question": "Om Eva kommer för sent beror det oftast (mest) på?",
+    "image": null,
+    "options": ["Hon träffade någon att prata med", "Hon hittade inte sina nycklar", "Hon skulle bara hämta något"],
+    "correct": 0,
+    "points": 10
+  },
+  {
+    "id": 8,
+    "type": "multiple_choice",
+    "question": "Om Eva hade fått välja att vara med i ett TV-program, vilket hade hon valt?",
+    "image": null,
+    "options": ["På spåret", "Hela Sverige Bakar", "Let's Dance", "Fångarna på Fortet"],
+    "correct": 2,
+    "points": 10
+  },
+  {
+    "id": 9,
+    "type": "multiple_choice",
+    "question": "Vilken uppfinning uppskattar Eva mest?",
+    "image": null,
+    "options": ["Diskmaskinen", "GPS:en (förutom på vägarna i Limnos)", "Kaffebryggaren"],
+    "correct": 1,
+    "points": 10
+  },
+  {
+    "id": 10,
+    "type": "multiple_choice",
+    "question": "Om Eva fick välja en ny karriär idag, vad skulle hon välja?",
+    "image": null,
+    "options": ["Reseledare", "TV-programledare i Let's Dance", "Pensionär på heltid"],
+    "correct": 2,
+    "points": 10
+  },
+  {
+    "id": 11,
+    "type": "multiple_choice",
+    "question": "Vad är mammas största styrka?",
+    "image": null,
+    "options": [
+      "Hennes tålamod när Ricky ska läsa högt",
+      "Hennes tålamod när Emilia inte förstår ett matteprobelm",
+      "Hennes förmåga att få folk att trivas ♥️"
+    ],
+    "correct": 2,
+    "points": 10
+  },
+  {
+    "id": 12,
+    "type": "multiple_choice",
+    "question": "Vad är det egentligen som håller mamma så ung? 😉",
+    "image": null,
+    "options": [
+      "Hennes två gigantiska kaffekoppar hon slukar i sig på morgonen",
+      "Att dansa på borden på stråket",
+      "En mor och dotter-resa om året ❤️☀️🏖️"
+    ],
+    "correct": 2,
+    "points": 10
+  },
+  {
+    "id": 13,
+    "type": "multiple_choice",
+    "question": "Vilken sport tyckte mamma var roligast som tonåring?",
+    "image": null,
+    "options": ["Basket", "Dans", "Fotboll"],
+    "correct": 0,
+    "points": 10
+  },
+  {
+    "id": 14,
+    "type": "multiple_choice",
+    "question": "Vad var mammas första sommarjobb?",
+    "image": null,
+    "options": ["TODO - Alternativ A", "TODO - Alternativ B", "TODO - Alternativ C"],
+    "correct": 0,
+    "points": 10
+  }
+]
