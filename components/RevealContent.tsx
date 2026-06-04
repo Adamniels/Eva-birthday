@@ -1,6 +1,5 @@
 'use client'
 
-import Image from 'next/image'
 import { GameState, Answer } from '@/lib/supabase'
 import { questions, Question, scoreAnswer, revealedQuestionIds } from '@/lib/questions'
 
@@ -82,12 +81,11 @@ export default function RevealContent({ gameState, myAnswers, leaderboard, playe
         <div className={`card overflow-hidden ${currentQuestion.image ? 'relative' : 'p-6'}`}>
           {currentQuestion.image && (
             <>
-              <Image
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
                 src={currentQuestion.image}
-                alt="Frågans bild"
-                fill
-                className="object-cover"
-                priority
+                alt=""
+                className="absolute inset-0 w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-black/65" />
             </>
