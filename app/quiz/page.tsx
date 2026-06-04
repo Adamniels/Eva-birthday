@@ -2,7 +2,6 @@
 
 import { useEffect, useState, useRef } from 'react'
 import { useRouter } from 'next/navigation'
-import Image from 'next/image'
 import { supabase } from '@/lib/supabase'
 import { questions, Question, memoryQuestions, MemoryQuestion } from '@/lib/questions'
 import StarField from '@/components/StarField'
@@ -257,14 +256,12 @@ export default function QuizPage() {
             {/* Bakgrundsbild */}
             {currentQuizQ.image && (
               <>
-                <Image
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
                   src={currentQuizQ.image}
-                  alt="Frågans bild"
-                  fill
-                  className="object-cover"
-                  priority
+                  alt=""
+                  className="absolute inset-0 w-full h-full object-cover"
                 />
-                {/* Mörkt lager så texten syns */}
                 <div className="absolute inset-0 bg-black/65" />
               </>
             )}
