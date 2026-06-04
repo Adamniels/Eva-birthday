@@ -2,32 +2,51 @@
 
 import { useEffect, useRef } from 'react'
 
-interface FloatingItem {
+interface SlotState {
   text: string
   x: number
   y: number
   vx: number
   vy: number
+  hasBounced: boolean
+  entryEdge: number
   size: number
   color: string
   alpha: number
-  alphaSpeed: number
+  spawnedNext: boolean
+  active: boolean
 }
 
-interface Props {
-  answers: string[]
+const COLORS = ['#F0D080', '#C9A84C', '#D8D9DD', '#A8A9AD', '#FDFAF3', '#E8C85A']
+const TEXT_W = 280
+const TEXT_H = 80
+const ACTIVE_SLOTS = 3
+
+function createSlot(text: string, W: number, H: number): SlotState {
+  const size = 14 + Math.random() * 16
+  const speed = 0.25 + Math.random() * 0.15
+  const drift = (Math.random() - 0.5) * 0.7
+  const edge = Math.floor(Math.random() * 4)
+
+  let x = 0, y = 0, vx = 0, vy = 0
+  switch (edge) {
+    case 0: x = -TEXT_W; y = Math.random() * (H - TEXT_H); vx = speed; vy = drift * speed; break
+    case 1: x = W + 10;  y = Math.random() * (H - TEXT_H); vx = -speed; vy = drift * speed; break
+    case 2: x = Math.random() * (W - TEXT_W); y = -TEXT_H; vx = drift * speed; vy = speed; break
+    default: x = Math.random() * (W - TEXT_W); y = H + 10; vx = drift * speed; vy = -speed; break
+  }
+
+  return {
+    text, x, y, vx, vy, size,
+    hasBounced: false, entryEdge: edge,
+    color: COLORS[Math.floor(Math.random() * COLORS.length)],
+    alpha: 0.7 + Math.random() * 0.3,
+    spawnedNext: false,
+    active: true,
+  }
 }
 
-const COLORS = [
-  '#F0D080', // gold-light
-  '#C9A84C', // gold
-  '#D8D9DD', // silver-light
-  '#A8A9AD', // silver
-  '#FDFAF3', // cream
-  '#E8C85A', // gold-mid
-]
-
-export default function FloatingAnswers({ answers }: Props) {
+export default function FloatingAnswers({ answers }: { answers: string[] }) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
   useEffect(() => {
@@ -36,86 +55,89 @@ export default function FloatingAnswers({ answers }: Props) {
     const ctx = canvas.getContext('2d')
     if (!ctx) return
 
-    const resize = () => {
-      canvas.width = window.innerWidth
-      canvas.height = window.innerHeight
-    }
+    const resize = () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight }
     resize()
     window.addEventListener('resize', resize)
 
-    // Skapa svävande objekt för varje svar
-    const items: FloatingItem[] = answers.map(text => {
-      const size = 14 + Math.random() * 22 // 14px – 36px
-      const speed = 0.3 + Math.random() * 0.5
-      const angle = Math.random() * Math.PI * 2
-      return {
-        text,
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        vx: Math.cos(angle) * speed,
-        vy: Math.sin(angle) * speed,
-        size,
-        color: COLORS[Math.floor(Math.random() * COLORS.length)],
-        alpha: 0.5 + Math.random() * 0.5,
-        alphaSpeed: (Math.random() - 0.5) * 0.004,
-      }
-    })
+    const W = () => canvas.width
+    const H = () => canvas.height
+
+    const slots: (SlotState | null)[] = Array(ACTIVE_SLOTS).fill(null)
+    let queueIdx = 0
+    const timeouts: ReturnType<typeof setTimeout>[] = []
+
+    const spawnSlot = (i: number) => {
+      if (answers.length === 0) return
+      const text = answers[queueIdx % answers.length]
+      queueIdx++
+      slots[i] = createSlot(text, W(), H())
+    }
+
+    for (let i = 0; i < ACTIVE_SLOTS; i++) {
+      const t = setTimeout(() => spawnSlot(i), i * 1400)
+      timeouts.push(t)
+    }
 
     let animId: number
 
+    const drawWrappedText = (slot: SlotState) => {
+      ctx.save()
+      ctx.font = `${Math.round(slot.size)}px Georgia, serif`
+      ctx.globalAlpha = slot.alpha
+      ctx.shadowColor = slot.color
+      ctx.shadowBlur = 6
+      ctx.fillStyle = slot.color
+      ctx.textAlign = 'center'
+      ctx.textBaseline = 'middle'
+
+      const maxW = Math.min(TEXT_W, W() * 0.4)
+      const words = slot.text.split(' ')
+      const lines: string[] = []
+      let cur = ''
+      for (const word of words) {
+        const test = cur ? `${cur} ${word}` : word
+        if (ctx.measureText(test).width > maxW && cur) { lines.push(cur); cur = word }
+        else cur = test
+      }
+      if (cur) lines.push(cur)
+
+      const lineH = slot.size * 1.35
+      const total = lines.length * lineH
+      lines.forEach((line, j) => {
+        ctx.fillText(line, slot.x + TEXT_W / 2, slot.y - total / 2 + j * lineH + lineH / 2)
+      })
+      ctx.restore()
+    }
+
     const draw = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height)
+      ctx.clearRect(0, 0, W(), H())
 
-      items.forEach(item => {
-        // Uppdatera position
-        item.x += item.vx
-        item.y += item.vy
+      slots.forEach((s, i) => {
+        if (!s) return
 
-        // Studs mot kanter
-        if (item.x < 0 || item.x > canvas.width) item.vx *= -1
-        if (item.y < 0 || item.y > canvas.height) item.vy *= -1
-        item.x = Math.max(0, Math.min(canvas.width, item.x))
-        item.y = Math.max(0, Math.min(canvas.height, item.y))
+        s.x += s.vx
+        s.y += s.vy
 
-        // Pulserande alpha
-        item.alpha += item.alphaSpeed
-        if (item.alpha > 1) { item.alpha = 1; item.alphaSpeed *= -1 }
-        if (item.alpha < 0.3) { item.alpha = 0.3; item.alphaSpeed *= -1 }
+        if (!s.hasBounced) {
+          if      (s.x <= 0 && s.entryEdge !== 0)          { s.vx =  Math.abs(s.vx); s.hasBounced = true }
+          else if (s.x >= W() - TEXT_W && s.entryEdge !== 1) { s.vx = -Math.abs(s.vx); s.hasBounced = true }
+          else if (s.y <= 0 && s.entryEdge !== 2)          { s.vy =  Math.abs(s.vy); s.hasBounced = true }
+          else if (s.y >= H() - TEXT_H && s.entryEdge !== 3) { s.vy = -Math.abs(s.vy); s.hasBounced = true }
+        }
 
-        // Rita text med mjuk skugga
-        ctx.save()
-        ctx.font = `${Math.round(item.size)}px Georgia, serif`
-        ctx.globalAlpha = item.alpha
-        ctx.shadowColor = item.color
-        ctx.shadowBlur = 8
-        ctx.fillStyle = item.color
-        ctx.textAlign = 'center'
-        ctx.textBaseline = 'middle'
+        drawWrappedText(s)
 
-        // Begränsa textbredd
-        const maxWidth = Math.min(300, canvas.width * 0.4)
-        const words = item.text.split(' ')
-        const lines: string[] = []
-        let currentLine = ''
+        const almostGone =
+          (s.vx < 0 && s.x < -TEXT_W * 0.8) ||
+          (s.vx > 0 && s.x > W() - TEXT_W * 0.2) ||
+          (s.vy < 0 && s.y < -TEXT_H * 0.8) ||
+          (s.vy > 0 && s.y > H() - TEXT_H * 0.2)
 
-        words.forEach(word => {
-          const testLine = currentLine ? `${currentLine} ${word}` : word
-          if (ctx.measureText(testLine).width > maxWidth && currentLine) {
-            lines.push(currentLine)
-            currentLine = word
-          } else {
-            currentLine = testLine
-          }
-        })
-        if (currentLine) lines.push(currentLine)
-
-        const lineHeight = item.size * 1.3
-        const totalHeight = lines.length * lineHeight
-        lines.forEach((line, i) => {
-          ctx.fillText(line, item.x, item.y - totalHeight / 2 + i * lineHeight + lineHeight / 2)
-        })
-
-        ctx.restore()
+        if (almostGone && !s.spawnedNext) {
+          s.spawnedNext = true
+          const t = setTimeout(() => spawnSlot(i), 200 + Math.random() * 600)
+          timeouts.push(t)
+        }
       })
 
       animId = requestAnimationFrame(draw)
@@ -125,14 +147,10 @@ export default function FloatingAnswers({ answers }: Props) {
 
     return () => {
       cancelAnimationFrame(animId)
+      timeouts.forEach(clearTimeout)
       window.removeEventListener('resize', resize)
     }
   }, [answers])
 
-  return (
-    <canvas
-      ref={canvasRef}
-      className="fixed inset-0 z-10 pointer-events-none"
-    />
-  )
+  return <canvas ref={canvasRef} className="fixed inset-0 z-20 pointer-events-none" />
 }

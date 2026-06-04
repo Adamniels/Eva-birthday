@@ -4,8 +4,8 @@
     "type": "multiple_choice",
     "question": "Hur gammal var Eva när hon var med i sin första danstävling?",
     "image": "/images-questions/question1.jpg",
-    "options": ["TODO - Alternativ A", "TODO - Alternativ B", "TODO - Alternativ C"],
-    "correct": 0,
+    "options": ["1989(23 år)", "1996(30 år)", "1992(26 år)", "1999(33 år)"],
+    "correct": 1,
     "points": 10
   },
   {
@@ -38,7 +38,7 @@
   {
     "id": 5,
     "type": "multiple_choice",
-    "question": "Vilket land reste hon till först utan sina föräldrar, hur gammal var hon?",
+    "question": "",
     "image": "/images-questions/question5.jpg",
     "options": ["TODO - Alternativ A", "TODO - Alternativ B", "TODO - Alternativ C"],
     "correct": 0,
@@ -129,8 +129,8 @@
     "type": "multiple_choice",
     "question": "Vad var mammas första sommarjobb?",
     "image": "/images-questions/question14.jpg",
-    "options": ["TODO - Alternativ A", "TODO - Alternativ B", "TODO - Alternativ C"],
-    "correct": 0,
+    "options": ["Kiosken i lit", "Tidningsbud", "På Konsum", "Ålderdomshemet i lit", "Barnvakt"],
+    "correct": 3,
     "points": 10
   }
 ]
