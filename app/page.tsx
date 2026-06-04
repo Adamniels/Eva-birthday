@@ -85,6 +85,7 @@ export default function Home() {
   return (
     <main className="relative min-h-screen flex flex-col items-center justify-center px-4 py-12">
       <StarField />
+
       <div className="relative z-10 w-full max-w-md flex flex-col items-center gap-8">
 
         {/* Rubrik */}
@@ -107,7 +108,6 @@ export default function Home() {
             className="relative"
             style={{ transform: 'rotate(-2deg)' }}
           >
-            {/* Polaroid-ram */}
             <div className="bg-white p-3 pb-10 shadow-2xl"
               style={{ boxShadow: '0 8px 32px rgba(201,168,76,0.25), 0 2px 8px rgba(0,0,0,0.5)' }}>
               <div className="relative w-64 h-72 overflow-hidden">
@@ -119,13 +119,11 @@ export default function Home() {
                   priority
                 />
               </div>
-              {/* Bildtext på polaroid-remsan */}
               <p className="text-center text-gray-700 text-xs font-medium mt-3 italic leading-snug px-1">
                 60 ÅR! Det kan man väl ändå inte tro?<br />
                 Det här var ju inte så länge sen.....ELLER? 😉
               </p>
             </div>
-            {/* Guldglans på hörnet */}
             <div className="absolute -top-1 -right-1 w-6 h-6 rounded-full gold-gradient opacity-60" />
           </div>
         )}
@@ -189,12 +187,6 @@ export default function Home() {
             </button>
           </form>
         </div>
-
-        {!isRevealPhase && (
-          <p className="text-[var(--silver)] text-xs opacity-60">
-            Du kan ändra dina svar fram till festen
-          </p>
-        )}
       </div>
     </main>
   )

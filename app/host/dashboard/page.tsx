@@ -8,6 +8,7 @@ import StarField from '@/components/StarField'
 import Confetti from '@/components/Confetti'
 import RevealContent, { LeaderboardEntry } from '@/components/RevealContent'
 import FloatingAnswers from '@/components/FloatingAnswers'
+import FloatingPhotos from '@/components/FloatingPhotos'
 
 interface PlayerSummary {
   id: string
@@ -26,6 +27,7 @@ export default function HostDashboard() {
   const [showConfetti, setShowConfetti] = useState(false)
   const [view, setView] = useState<'lobby' | 'reveal'>('lobby')
   const [memoryAnswerTexts, setMemoryAnswerTexts] = useState<string[]>([])
+  const [memoryPhotos, setMemoryPhotos] = useState<{ url: string; playerName: string }[]>([])
 
   const checkAuth = useCallback(() => {
     if (typeof window !== 'undefined' && !sessionStorage.getItem('hostAuth')) {
@@ -56,6 +58,17 @@ export default function HostDashboard() {
     const memoryIds = memoryQuestions.map(q => q.id)
     const { data } = await supabase.from('answers').select('answer').in('question_id', memoryIds)
     if (data) setMemoryAnswerTexts(data.map(a => a.answer).filter(a => a.trim().length > 0))
+
+    const staticPhotos = Array.from({ length: 12 }, (_, i) =>
+      ({ url: `/images-for-floating/eva-${i + 1}.jpg`, playerName: '' })
+    )
+
+    const { data: photos } = await supabase.from('photos').select('public_url, player_name')
+    const guestPhotos = photos
+      ? photos.map(p => ({ url: p.public_url, playerName: p.player_name }))
+      : []
+
+    setMemoryPhotos([...staticPhotos, ...guestPhotos])
   }, [])
 
   const loadData = useCallback(async () => {
@@ -307,6 +320,7 @@ export default function HostDashboard() {
       <main className="relative min-h-screen flex flex-col items-center justify-center px-4 pb-28">
         <StarField />
         <FloatingAnswers answers={memoryAnswerTexts} />
+        <FloatingPhotos photos={memoryPhotos} />
         <div className="relative z-20 text-center pointer-events-none">
           <p className="text-[var(--silver)] text-sm uppercase tracking-widest mb-2">Minnen</p>
           <h2 className="gold-text text-3xl font-bold">Eva ♡</h2>

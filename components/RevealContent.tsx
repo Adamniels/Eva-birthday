@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { GameState, Answer } from '@/lib/supabase'
 import { questions, Question, scoreAnswer, revealedQuestionIds } from '@/lib/questions'
 
@@ -78,7 +79,20 @@ export default function RevealContent({ gameState, myAnswers, leaderboard, playe
 
       {/* Frågekort */}
       {currentQuestion && (
-        <div className="card p-6">
+        <div className={`card overflow-hidden ${currentQuestion.image ? 'relative' : 'p-6'}`}>
+          {currentQuestion.image && (
+            <>
+              <Image
+                src={currentQuestion.image}
+                alt="Frågans bild"
+                fill
+                className="object-cover"
+                priority
+              />
+              <div className="absolute inset-0 bg-black/65" />
+            </>
+          )}
+          <div className={`relative z-10 ${currentQuestion.image ? 'p-6' : ''}`}>
           <p className="text-[var(--cream)] text-lg font-semibold leading-snug mb-5">
             {currentQuestion.question}
           </p>
@@ -174,6 +188,7 @@ export default function RevealContent({ gameState, myAnswers, leaderboard, playe
               </div>
             </div>
           )}
+          </div>
         </div>
       )}
     </div>

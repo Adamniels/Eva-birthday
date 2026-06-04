@@ -3,7 +3,7 @@
     "id": 1,
     "type": "multiple_choice",
     "question": "Hur gammal var Eva när hon var med i sin första danstävling?",
-    "image": null,
+    "image": "/images-questions/question1.jpg",
     "options": ["TODO - Alternativ A", "TODO - Alternativ B", "TODO - Alternativ C"],
     "correct": 0,
     "points": 10
