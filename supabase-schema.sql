@@ -70,3 +70,20 @@ create policy "Public insert players" on players for insert with check (true);
 create policy "Public read answers"   on answers for select using (true);
 create policy "Public insert answers" on answers for insert with check (true);
 create policy "Public update answers" on answers for update using (true);
+
+-- ─── Photos ──────────────────────────────────────────────────────────────────
+create table if not exists photos (
+  id          uuid primary key default gen_random_uuid(),
+  player_id   uuid references players(id) on delete cascade,
+  player_name text not null,
+  public_url  text not null,
+  storage_path text not null,
+  created_at  timestamptz not null default now()
+);
+
+alter publication supabase_realtime add table photos;
+
+alter table photos enable row level security;
+create policy "Public read photos"   on photos for select using (true);
+create policy "Public insert photos" on photos for insert with check (true);
+create policy "Public delete photos" on photos for delete using (true);

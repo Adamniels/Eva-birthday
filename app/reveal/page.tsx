@@ -9,6 +9,7 @@ import Confetti from '@/components/Confetti'
 import RevealContent, { LeaderboardEntry } from '@/components/RevealContent'
 import BackButton from '@/components/BackButton'
 import FloatingAnswers from '@/components/FloatingAnswers'
+import FloatingPhotos from '@/components/FloatingPhotos'
 
 export default function RevealPage() {
   const router = useRouter()
@@ -18,6 +19,7 @@ export default function RevealPage() {
   const [showConfetti, setShowConfetti] = useState(false)
   const [playerName, setPlayerName] = useState('')
   const [memoryAnswerTexts, setMemoryAnswerTexts] = useState<string[]>([])
+  const [memoryPhotos, setMemoryPhotos] = useState<{ url: string; playerName: string }[]>([])
 
   const loadLeaderboard = useCallback(async (revealIndex: number, revealStep: string) => {
     const { data: players } = await supabase.from('players').select('id, name')
@@ -56,6 +58,18 @@ export default function RevealPage() {
     if (data) {
       setMemoryAnswerTexts(data.map(a => a.answer).filter(a => a.trim().length > 0))
     }
+    const staticPhotos = Array.from({ length: 12 }, (_, i) =>
+      ({ url: `/images-for-floating/eva-${i + 1}.jpg`, playerName: '' })
+    )
+
+    const { data: photos } = await supabase
+      .from('photos')
+      .select('public_url, player_name')
+    const guestPhotos = photos
+      ? photos.map(p => ({ url: p.public_url, playerName: p.player_name }))
+      : []
+
+    setMemoryPhotos([...staticPhotos, ...guestPhotos])
   }, [])
 
   useEffect(() => {
@@ -131,6 +145,7 @@ export default function RevealPage() {
         <StarField />
         <BackButton />
         <FloatingAnswers answers={memoryAnswerTexts} />
+        <FloatingPhotos photos={memoryPhotos} />
         <div className="relative z-20 text-center pointer-events-none">
           <p className="text-[var(--silver)] text-sm uppercase tracking-widest mb-2">Minnen</p>
           <h2 className="gold-text text-3xl font-bold">Eva ♡</h2>
