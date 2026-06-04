@@ -9,7 +9,8 @@ import BackButton from '@/components/BackButton'
 
 const OPTION_LABELS = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']
 const MAX_PHOTOS = 5
-const totalCount = questions.length + memoryQuestions.length
+const PHOTO_STEP = questions.length + memoryQuestions.length
+const totalCount = PHOTO_STEP + 1
 
 interface UploadedPhoto {
   url: string
@@ -53,11 +54,11 @@ export default function QuizPage() {
   const [uploadError, setUploadError] = useState('')
   const fileInputRef = useRef<HTMLInputElement>(null)
 
-  const isMemoryPhase = currentQ >= questions.length
+  const isPhotoStep = currentQ === PHOTO_STEP
+  const isMemoryPhase = currentQ >= questions.length && !isPhotoStep
   const memoryIndex = currentQ - questions.length
-  const currentQuizQ: Question | undefined = !isMemoryPhase ? questions[currentQ] : undefined
+  const currentQuizQ: Question | undefined = !isMemoryPhase && !isPhotoStep ? questions[currentQ] : undefined
   const currentMemoryQ: MemoryQuestion | undefined = isMemoryPhase ? memoryQuestions[memoryIndex] : undefined
-  const isLastStep = currentQ === totalCount - 1
 
   useEffect(() => {
     const init = async () => {
@@ -199,12 +200,12 @@ export default function QuizPage() {
           <p className="text-[var(--gold-light)] text-sm">Hej, {playerName}!</p>
           <h2 className="gold-text text-2xl font-bold mt-1">Eva Quiz</h2>
           <p className="text-[var(--silver)] text-sm mt-1">
-            {answeredCount} / {totalCount} besvarade
+            {answeredCount} / {PHOTO_STEP} besvarade
           </p>
           <div className="mt-3 h-1.5 bg-white/10 rounded-full overflow-hidden">
             <div
               className="h-full gold-gradient rounded-full transition-all duration-500"
-              style={{ width: `${(answeredCount / totalCount) * 100}%` }}
+              style={{ width: `${(answeredCount / PHOTO_STEP) * 100}%` }}
             />
           </div>
         </div>
@@ -248,6 +249,19 @@ export default function QuizPage() {
               ♡
             </button>
           ))}
+
+          <button
+            onClick={() => setCurrentQ(PHOTO_STEP)}
+            className={`w-8 h-8 rounded-full text-xs font-bold transition-all ${
+              isPhotoStep
+                ? 'bg-[var(--silver-light)] text-[var(--dark)]'
+                : uploadedPhotos.length > 0
+                ? 'bg-[var(--silver)] text-[var(--dark)]'
+                : 'bg-white/10 text-[var(--silver)]'
+            }`}
+          >
+            📷
+          </button>
         </div>
 
         {/* Quiz-fråga */}
@@ -321,17 +335,17 @@ export default function QuizPage() {
           </div>
         )}
 
-        {/* Bilduppladdning — visas på sista steget */}
-        {isLastStep && (
+        {/* Bilduppladdning — eget steg */}
+        {isPhotoStep && (
           <div className="card p-6">
             <p className="text-[var(--silver)] text-xs uppercase tracking-widest mb-2">
-              Bilder ♡
+              Dela med dig ♡
             </p>
-            <p className="text-[var(--cream)] font-semibold mb-1">
-              Har du ett fint foto på Eva?
+            <p className="text-[var(--cream)] text-lg font-semibold leading-snug mb-2">
+              Har du några roliga minnen eller bilder med Eva?
             </p>
             <p className="text-[var(--silver)] text-sm mb-5">
-              Ladda upp upp till {MAX_PHOTOS} bilder — de svävar runt på festen!
+              Ladda upp upp till {MAX_PHOTOS} bilder — de svävar runt som polaroids på festen!
             </p>
 
             {/* Förhandsvisning av uppladdade foton */}
@@ -420,9 +434,9 @@ export default function QuizPage() {
           )}
         </div>
 
-        {!allAnswered && currentQ === totalCount - 1 && (
+        {!allAnswered && isPhotoStep && (
           <p className="text-center text-[var(--silver)] text-sm">
-            Du har fortfarande {totalCount - answeredCount} frågor kvar
+            Du har fortfarande {PHOTO_STEP - answeredCount} frågor kvar att svara på
           </p>
         )}
 
