@@ -59,7 +59,7 @@ export default function HostDashboard() {
     const { data } = await supabase.from('answers').select('answer').in('question_id', memoryIds)
     if (data) setMemoryAnswerTexts(data.map(a => a.answer).filter(a => a.trim().length > 0))
 
-    const staticPhotos = Array.from({ length: 12 }, (_, i) =>
+    const staticPhotos = Array.from({ length: 16 }, (_, i) =>
       ({ url: `/images-for-floating/eva-${i + 1}.jpg`, playerName: '' })
     )
 

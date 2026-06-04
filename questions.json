@@ -12,7 +12,7 @@
     "id": 2,
     "type": "multiple_choice",
     "question": "Idag jobbar Eva som mattelärare och är extremt uppskattad för sin kunskap och humor bland sina elever. Men vilket ämne tyckte Eva bäst om i skolan?",
-    "image": null,
+    "image": "/images-questions/question2.jpg",
     "options": ["Idrott", "Svenska", "Matte"],
     "correct": 0,
     "points": 10
@@ -21,7 +21,7 @@
     "id": 3,
     "type": "multiple_choice",
     "question": "Vem var hennes första kändiskrush (kanske kvar än idag)?",
-    "image": null,
+    "image": "/images-questions/question11.jpg",
     "options": ["George Clooney", "Leonardo DiCaprio", "Lasse Åberg", "Stig Helmer", "Brad Pitt"],
     "correct": 0,
     "points": 10
@@ -30,7 +30,7 @@
     "id": 4,
     "type": "multiple_choice",
     "question": "Vilket av dessa länder har mamma INTE varit i?",
-    "image": null,
+    "image": "/images-questions/question4.jpg",
     "options": ["USA", "Madagaskar", "Storbritannien", "Tyskland", "Spanien", "Italien", "Grekland", "Mexiko"],
     "correct": 1,
     "points": 10
@@ -39,7 +39,7 @@
     "id": 5,
     "type": "multiple_choice",
     "question": "Vilket land reste hon till först utan sina föräldrar, hur gammal var hon?",
-    "image": null,
+    "image": "/images-questions/question5.jpg",
     "options": ["TODO - Alternativ A", "TODO - Alternativ B", "TODO - Alternativ C"],
     "correct": 0,
     "points": 10
@@ -47,8 +47,8 @@
   {
     "id": 6,
     "type": "multiple_choice",
-    "question": "Vad är mammas favoritgodis, denna kanske ni kan lista ut?",
-    "image": null,
+    "question": "Vad har alltid varitmammas favoritgodis genom åren, denna kanske ni kan lista ut rent matematiskt?",
+    "image": "/images-questions/question6.jpg",
     "options": ["Saltlakrits", "Vinegummi", "Gelehallon", "Sötlakrits"],
     "correct": 1,
     "points": 10
@@ -57,7 +57,7 @@
     "id": 7,
     "type": "multiple_choice",
     "question": "Om Eva kommer för sent beror det oftast (mest) på?",
-    "image": null,
+    "image": "/images-questions/question7.jpg",
     "options": ["Hon träffade någon att prata med", "Hon hittade inte sina nycklar", "Hon skulle bara hämta något"],
     "correct": 0,
     "points": 10
@@ -66,7 +66,7 @@
     "id": 8,
     "type": "multiple_choice",
     "question": "Om Eva hade fått välja att vara med i ett TV-program, vilket hade hon valt?",
-    "image": null,
+    "image": "/images-questions/question8.jpg",
     "options": ["På spåret", "Hela Sverige Bakar", "Let's Dance", "Fångarna på Fortet"],
     "correct": 2,
     "points": 10
@@ -75,7 +75,7 @@
     "id": 9,
     "type": "multiple_choice",
     "question": "Vilken uppfinning uppskattar Eva mest?",
-    "image": null,
+    "image": "/images-questions/question9.jpg",
     "options": ["Diskmaskinen", "GPS:en (förutom på vägarna i Limnos)", "Kaffebryggaren"],
     "correct": 1,
     "points": 10
@@ -84,7 +84,7 @@
     "id": 10,
     "type": "multiple_choice",
     "question": "Om Eva fick välja en ny karriär idag, vad skulle hon välja?",
-    "image": null,
+    "image": "/images-questions/question10.jpg",
     "options": ["Reseledare", "TV-programledare i Let's Dance", "Pensionär på heltid"],
     "correct": 2,
     "points": 10
@@ -93,7 +93,7 @@
     "id": 11,
     "type": "multiple_choice",
     "question": "Vad är mammas största styrka?",
-    "image": null,
+    "image": "/images-questions/question3.jpg",
     "options": [
       "Hennes tålamod när Ricky ska läsa högt",
       "Hennes tålamod när Emilia inte förstår ett matteprobelm",
@@ -106,7 +106,7 @@
     "id": 12,
     "type": "multiple_choice",
     "question": "Vad är det egentligen som håller mamma så ung? 😉",
-    "image": null,
+    "image": "/images-questions/question13.jpg",
     "options": [
       "Hennes två gigantiska kaffekoppar hon slukar i sig på morgonen",
       "Att dansa på borden på stråket",
@@ -119,7 +119,7 @@
     "id": 13,
     "type": "multiple_choice",
     "question": "Vilken sport tyckte mamma var roligast som tonåring?",
-    "image": null,
+    "image": "/images-questions/question12.jpg",
     "options": ["Basket", "Dans", "Fotboll"],
     "correct": 0,
     "points": 10
@@ -128,7 +128,7 @@
     "id": 14,
     "type": "multiple_choice",
     "question": "Vad var mammas första sommarjobb?",
-    "image": null,
+    "image": "/images-questions/question14.jpg",
     "options": ["TODO - Alternativ A", "TODO - Alternativ B", "TODO - Alternativ C"],
     "correct": 0,
     "points": 10
