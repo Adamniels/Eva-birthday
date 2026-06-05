@@ -20,7 +20,7 @@
   {
     "id": 3,
     "type": "multiple_choice",
-    "question": "Vem var hennes första kändiskrush (kanske kvar än idag)?",
+    "question": "Vem var hennes första kändis crush (kanske kvar än idag)?",
     "image": "/images-questions/question11.jpg",
     "options": ["George Clooney", "Leonardo DiCaprio", "Lasse Åberg", "Stig Helmer", "Brad Pitt"],
     "correct": 0,
@@ -29,7 +29,7 @@
   {
     "id": 4,
     "type": "multiple_choice",
-    "question": "Vilket av dessa länder har mamma INTE varit i?",
+    "question": "Vilket av dessa länder har Eva INTE varit i?",
     "image": "/images-questions/question4.jpg",
     "options": ["USA", "Madagaskar", "Storbritannien", "Tyskland", "Spanien", "Italien", "Grekland", "Mexiko"],
     "correct": 1,
@@ -38,16 +38,16 @@
   {
     "id": 5,
     "type": "multiple_choice",
-    "question": "",
+    "question": "Hur gammal var Eva när hon tågluffade första gången?",
     "image": "/images-questions/question5.jpg",
-    "options": ["TODO - Alternativ A", "TODO - Alternativ B", "TODO - Alternativ C"],
-    "correct": 0,
+    "options": ["17 år", "19 år", "23 år", "28 år"],
+    "correct": 1,
     "points": 10
   },
   {
     "id": 6,
     "type": "multiple_choice",
-    "question": "Vad har alltid varitmammas favoritgodis genom åren, denna kanske ni kan lista ut rent matematiskt?",
+    "question": "Vad är Evas favoritgodis genom åren, denna kanske ni kan lista ut rent matematiskt?",
     "image": "/images-questions/question6.jpg",
     "options": ["Saltlakrits", "Vinegummi", "Gelehallon", "Sötlakrits"],
     "correct": 1,
@@ -65,7 +65,7 @@
   {
     "id": 8,
     "type": "multiple_choice",
-    "question": "Om Eva hade fått välja att vara med i ett TV-program, vilket hade hon valt?",
+    "question": "Om hon hade fått välja att vara med i ett TV-program, vilket hade hon valt?",
     "image": "/images-questions/question8.jpg",
     "options": ["På spåret", "Hela Sverige Bakar", "Let's Dance", "Fångarna på Fortet"],
     "correct": 2,
@@ -92,7 +92,7 @@
   {
     "id": 11,
     "type": "multiple_choice",
-    "question": "Vad är mammas största styrka?",
+    "question": "Vad är hennes största styrka?",
     "image": "/images-questions/question3.jpg",
     "options": [
       "Hennes tålamod när Ricky ska läsa högt",
@@ -108,8 +108,8 @@
     "question": "Vad är det egentligen som håller mamma så ung? 😉",
     "image": "/images-questions/question13.jpg",
     "options": [
-      "Hennes två gigantiska kaffekoppar hon slukar i sig på morgonen",
-      "Att dansa på borden på stråket",
+      "Hennes två gigantiska kaffekoppar hon slukar i sig på morgonen☕️",
+      "Att dansa på borden på stråket💃🪩",
       "En mor och dotter-resa om året ❤️☀️🏖️"
     ],
     "correct": 2,
@@ -120,7 +120,7 @@
     "type": "multiple_choice",
     "question": "Vilken sport tyckte mamma var roligast som tonåring?",
     "image": "/images-questions/question12.jpg",
-    "options": ["Basket", "Dans", "Fotboll"],
+    "options": ["Basket🏀", "Dans💃", "Fotboll⚽️"],
     "correct": 0,
     "points": 10
   },
